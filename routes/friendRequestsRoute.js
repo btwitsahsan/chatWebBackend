@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const FriendRequest = require("../models/friendRequestModal");
 const User = require("../models/userModel");
-const Conversation = require("../models/ConversationModel");
+const Conversation = require("../models/conversationModel");
 
 
 
