@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended: false}));
 app.use(
     cors({
-    origin: ["http://localhost:3000", "https://chat-web-frontend-rho.vercel.app"],
+    origin: ["https://chat-web-frontend-rho.vercel.app", "http://localhost:3000"],
     credentials: true,
 }));
 
