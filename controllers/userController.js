@@ -89,7 +89,7 @@ const loginUser = expressAsyncHandler(async (req, res) => {
   // Generate token
   const token = generateToken(user._id);
 
-  
+
   if (user && passwordCorrect) {
     const newUser = await User.findOne({ email }).select("-password");
     res.cookie("token", token, {
@@ -111,7 +111,7 @@ const logout = expressAsyncHandler(async (req, res) => {
     path: "/",
     httpOnly: true,
     secure: true,
-    sameSite : none,
+    sameSite : "None",
     expires: new Date(0),
   });
   res.status(200).json({ message: "User Successfully Logged-out..." });
