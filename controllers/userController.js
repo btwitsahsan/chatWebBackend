@@ -41,10 +41,10 @@ const registerUser = expressAsyncHandler(async (req, res) => {
   if (user) {
     const { _id, name, email, role } = user;
     res.cookie("token", token, {
-      // path: "/",
+      path: "/",
       httpOnly: true,
       secure: true,
-      // sameSite : none,
+      sameSite : none,
       expires: new Date(Date.now() + 1000 * 86400),
     });
     res.status(201).json({
