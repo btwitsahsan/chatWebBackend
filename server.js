@@ -17,10 +17,15 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: false}));
 app.use(
-    cors({
-    origin: "https://chat-web-frontend-rho.vercel.app",
-    credentials: true,
-}));
+    app.use(
+        cors({
+            origin: "https://chat-web-frontend-rho.vercel.app",
+            credentials: true, // ✅ Required to send cookies
+            allowedHeaders: ["Content-Type", "Authorization"],
+            methods: ["GET", "POST", "PUT", "DELETE"],
+        })
+    );
+);
 
 const PORT = process.env.PORT || 5000;
 

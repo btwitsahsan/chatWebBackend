@@ -40,13 +40,21 @@ const registerUser = expressAsyncHandler(async (req, res) => {
   const token = generateToken(user._id);
   if (user) {
     const { _id, name, email, role } = user;
+    // res.cookie("token", token, {
+    //   path: "/",
+    //   httpOnly: true,
+    //   secure: true,
+    //   sameSite : none,
+    //   expires: new Date(Date.now() + 1000 * 86400),
+    // });
     res.cookie("token", token, {
       path: "/",
       httpOnly: true,
-      secure: true,
-      sameSite : none,
-      expires: new Date(Date.now() + 1000 * 86400),
+      secure: true, // ✅ Needed for HTTPS
+      sameSite: "None", // ✅ Ensures cross-site cookie storage
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 1 day
     });
+
     res.status(201).json({
       _id,
       name,
@@ -86,9 +94,9 @@ const loginUser = expressAsyncHandler(async (req, res) => {
     res.cookie("token", token, {
       path: "/",
       httpOnly: true,
-      expires: new Date(Date.now() + 1000 * 86400),
-      secure: true,
-      sameSite : none,
+      secure: true, // ✅ Needed for HTTPS
+      sameSite: "None", // ✅ Ensures cross-site cookie storage
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 1 day
     });
     res.status(201).json(newUser);
   } else {
