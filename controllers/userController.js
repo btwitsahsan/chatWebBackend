@@ -89,6 +89,7 @@ const loginUser = expressAsyncHandler(async (req, res) => {
   // Generate token
   const token = generateToken(user._id);
 
+  
   if (user && passwordCorrect) {
     const newUser = await User.findOne({ email }).select("-password");
     res.cookie("token", token, {
