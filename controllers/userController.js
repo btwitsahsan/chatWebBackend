@@ -84,7 +84,7 @@ const loginUser = expressAsyncHandler(async (req, res) => {
   if (user && passwordCorrect) {
     const newUser = await User.findOne({ email }).select("-password");
     res.cookie("token", token, {
-      // path: "/",
+      path: "/",
       httpOnly: true,
       expires: new Date(Date.now() + 1000 * 86400),
       secure: true,
@@ -99,7 +99,7 @@ const loginUser = expressAsyncHandler(async (req, res) => {
 
 const logout = expressAsyncHandler(async (req, res) => {
   res.cookie("token", "", {
-    // path: "/",
+    path: "/",
     httpOnly: true,
     secure: true,
     sameSite : none,
