@@ -20,6 +20,8 @@ app.use(
   cors({
     origin: "https://chat-web-frontend-rho.vercel.app",
     credentials: true, // ✅ Required to send cookies
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 
